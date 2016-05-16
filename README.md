@@ -112,5 +112,6 @@ This software is released under the [MIT License](https://github.com/realglobe-I
 Links
 ------
 
++ [socket.io](https://github.com/socketio/socket.io#readme)
 
 <!-- Links End -->
