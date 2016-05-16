@@ -1,0 +1,41 @@
+{
+  "name": "sg-socket",
+  "version": "1.0.0",
+  "description": "WebSocket server for SUGOS",
+  "main": "lib",
+  "scripts": {
+    "test": "./ci/test.js"
+  },
+  "repository": "realglobe-Inc/sg-socket",
+  "keywords": [],
+  "author": {
+    "name": "Taka Okunishi",
+    "email": "okunishitaka.com@gmail.com",
+    "url": "http://okunishitaka.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/realglobe-Inc/sg-socket/issues"
+  },
+  "homepage": "https://github.com/realglobe-Inc/sg-socket#readme",
+  "dependencies": {
+    "co": "^4.6.0",
+    "socket.io": "^1.4.6"
+  },
+  "devDependencies": {
+    "ape-covering": "^3.0.1",
+    "ape-formatting": "^1.0.0",
+    "ape-releasing": "^3.1.1",
+    "ape-reporting": "^3.0.1",
+    "ape-tasking": "^3.1.2",
+    "ape-testing": "^3.0.1",
+    "ape-tmpl": "^5.0.1",
+    "ape-updating": "^3.0.2",
+    "coz": "^5.1.7",
+    "injectmock": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=6",
+    "npm": ">=3"
+  }
+}
