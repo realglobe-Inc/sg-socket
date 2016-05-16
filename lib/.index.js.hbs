@@ -13,4 +13,4 @@ Object.assign(lib, sgSocket, {
   sgSocket
 })
 
-module.exports = sgSocket
+module.exports = lib
