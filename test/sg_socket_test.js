@@ -30,7 +30,7 @@ describe('sg-socket', () => {
 
     client01.lock('hoge')
     yield new Promise((resolve) => {
-      client02.on('sg:alloc', (data) => {
+      client02.on('sg:lock:alloc', (data) => {
         assert.equal(data.name, 'hoge')
         resolve()
       })
@@ -38,7 +38,7 @@ describe('sg-socket', () => {
 
     client02.lock('hoge')
     yield new Promise((resolve) => {
-      client02.on('sg:conflict', (data) => {
+      client02.on('sg:lock:conflict', (data) => {
         assert.equal(data.name, 'hoge')
         resolve()
       })
@@ -46,7 +46,7 @@ describe('sg-socket', () => {
 
     client01.unlock('hoge')
     yield new Promise((resolve) => {
-      client02.on('sg:release', (data) => {
+      client02.on('sg:lock:release', (data) => {
         assert.equal(data.name, 'hoge')
         resolve()
       })

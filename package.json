@@ -1,6 +1,6 @@
 {
   "name": "sg-socket",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "WebSocket server for SUGOS",
   "main": "lib",
   "scripts": {
@@ -21,7 +21,8 @@
   "dependencies": {
     "co": "^4.6.0",
     "debug": "^2.2.0",
-    "sg-socket-constants": "^1.0.3",
+    "sg-socket-client": "^1.1.1",
+    "sg-socket-constants": "^1.1.0",
     "socket.io": "^1.4.6"
   },
   "devDependencies": {
