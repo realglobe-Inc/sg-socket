@@ -6,6 +6,8 @@
 
 const sgSocket = require('../lib/sg_socket.js')
 const sgSocketClient = require('sg-socket-client')
+const { AcknowledgeStatus } = require('sg-socket-constants')
+const { OK, NG } = AcknowledgeStatus
 const assert = require('assert')
 const co = require('co')
 
@@ -23,35 +25,40 @@ describe('sg-socket', () => {
     let server = sgSocket(port)
 
     let client01 = sgSocketClient(`http://localhost:${port}`)
-    yield new Promise((resolve) => client01.on('connect', () => resolve()))
+    yield client01.waitToConnect()
 
     let client02 = sgSocketClient(`http://localhost:${port}`)
-    yield new Promise((resolve) => client02.on('connect', () => resolve()))
+    yield client02.waitToConnect()
 
-    client01.lock('hoge')
-    yield new Promise((resolve) => {
-      client02.on('sg:lock:alloc', (data) => {
-        assert.equal(data.name, 'hoge')
-        resolve()
-      })
-    })
+    {
+      let result = yield client01.lock('hoge')
+      assert.equal(result.status, OK, 'succeeded to lock')
+    }
 
-    client02.lock('hoge')
-    yield new Promise((resolve) => {
-      client02.on('sg:lock:conflict', (data) => {
-        assert.equal(data.name, 'hoge')
-        resolve()
-      })
-    })
-
-    client01.unlock('hoge')
-    yield new Promise((resolve) => {
-      client02.on('sg:lock:release', (data) => {
-        assert.equal(data.name, 'hoge')
-        resolve()
-      })
-    })
-
+    {
+      let result = yield client02.lock('hoge')
+      assert.equal(result.status, NG, 'Failed to lock')
+    }
+    {
+      let result = yield client02.lock('fuge')
+      assert.equal(result.status, OK, 'succeeded to lock')
+    }
+    {
+      let result = yield client01.unlock('hoge')
+      assert.equal(result.status, OK, 'succeeded to unlock')
+    }
+    {
+      let result = yield client02.lock('hoge')
+      assert.equal(result.status, OK, 'succeeded to lock')
+    }
+    {
+      let result = yield client02.unlock('hoge')
+      assert.equal(result.status, OK, 'succeeded to lock')
+    }
+    {
+      let result = yield client02.unlock('fuge')
+      assert.equal(result.status, OK, 'succeeded to lock')
+    }
     yield new Promise((resolve) => server.close(resolve()))
   }))
 })
