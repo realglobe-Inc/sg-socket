@@ -60,10 +60,12 @@ describe('sg-socket', () => {
       let result = yield client02.unlock('hoge')
       assert.equal(result.status, OK, 'succeeded to lock')
     }
-    {
-      let result = yield client02.unlock('fuge')
-      assert.equal(result.status, OK, 'succeeded to lock')
-    }
+
+    yield new Promise((resolve) => {
+      client02.close()
+      setTimeout(() => resolve(), 500)
+    })
+
     yield new Promise((resolve) => server.close(resolve()))
   }))
 })
