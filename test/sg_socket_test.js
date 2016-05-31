@@ -36,8 +36,13 @@ describe('sg-socket', () => {
     }
 
     {
-      let result = yield client02.lock('hoge').catch((err) => ({ handled: err }))
-      assert.ok(result.handled)
+      let thrown
+      try {
+        yield client02.lock('hoge')
+      } catch (err) {
+        thrown = err
+      }
+      assert.ok(thrown, 'Failed to lock')
     }
     {
       let result = yield client02.lock('fuge')
