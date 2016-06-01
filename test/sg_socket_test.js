@@ -20,7 +20,7 @@ describe('sg-socket', () => {
 
   }))
 
-  it('Sg socket', () => co(function * () {
+  it('Lock / Unlock', () => co(function * () {
     let port = 9876
     let server = sgSocket(port)
 
@@ -70,8 +70,17 @@ describe('sg-socket', () => {
       let result = yield client01.lock('fuge')
       assert.equal(result.status, OK, 'succeeded to lock')
     }
+    
+    client01.close()
 
-    yield new Promise((resolve) => server.close(resolve()))
+    yield server.close()
+  }))
+
+  it('Pub / Sub', () => co(function * () {
+    let port = 9877
+    let server = sgSocket(port)
+
+    yield server.close()
   }))
 })
 
