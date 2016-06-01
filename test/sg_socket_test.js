@@ -66,6 +66,11 @@ describe('sg-socket', () => {
       setTimeout(() => resolve(), 500)
     })
 
+    {
+      let result = yield client01.lock('fuge')
+      assert.equal(result.status, OK, 'succeeded to lock')
+    }
+
     yield new Promise((resolve) => server.close(resolve()))
   }))
 })
