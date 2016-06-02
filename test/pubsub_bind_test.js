@@ -45,9 +45,20 @@ describe('pubsub-bind', () => {
     yield new Promise((resolve, reject) => {
       client02.subscribe(topic01, (payload) => {
         assert.deepEqual(payload, { foo: 'bar' })
-        resolve()
+        client02.unsubscribe(topic01).then(() => {
+          co(function * () {
+            let result = yield client01.publish(topic01, { foo: 'bar' })
+            let { count } = result.payload
+            assert.equal(count, 0)
+            resolve()
+          }).catch(reject)
+        })
       }).then(() => {
-        client01.publish(topic01, { foo: 'bar' })
+        co(function * () {
+          let result = yield client01.publish(topic01, { foo: 'bar' })
+          let { count } = result.payload
+          assert.equal(count, 1)
+        }).catch(reject)
       })
     })
 
