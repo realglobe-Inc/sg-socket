@@ -1,6 +1,6 @@
 {
   "name": "sg-socket",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "WebSocket server for SUGOS",
   "main": "lib",
   "scripts": {
