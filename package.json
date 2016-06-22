@@ -4,7 +4,8 @@
   "description": "WebSocket server for SUGOS",
   "main": "lib",
   "scripts": {
-    "test": "DEBUG=sg:* ./ci/test.js"
+    "test": "DEBUG=sg:* ./ci/test.js",
+    "prepublish": "./ci/build.js"
   },
   "repository": "realglobe-Inc/sg-socket",
   "keywords": [
