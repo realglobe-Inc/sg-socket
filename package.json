@@ -40,7 +40,8 @@
     "ape-updating": "^4.0.4",
     "coz": "^6.0.5",
     "injectmock": "^2.0.0",
-    "sg-socket-client": "^1.2.7"
+    "sg-socket-client": "^1.2.7",
+    "sg-travis": "^1.1.25"
   },
   "engines": {
     "node": ">=6",
