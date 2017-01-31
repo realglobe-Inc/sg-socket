@@ -4,8 +4,8 @@
   "description": "WebSocket server for SUGOS",
   "main": "lib",
   "scripts": {
-    "test": "DEBUG=sg:* ./ci/test.js",
-    "prepublish": "./ci/build.js"
+    "test": "DEBUG=sg:* node ./ci/test.js",
+    "prepare": "node ./ci/build.js"
   },
   "repository": "realglobe-Inc/sg-socket",
   "keywords": [
@@ -17,7 +17,7 @@
     "email": "okunishitaka.com@gmail.com",
     "url": "http://okunishitaka.com"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/realglobe-Inc/sg-socket/issues"
   },
@@ -25,29 +25,22 @@
   "dependencies": {
     "co": "^4.6.0",
     "debug": "^2.2.0",
-    "sg-socket-client": "^1.2.7",
     "sg-socket-constants": "^1.3.0",
     "socket.io": "^1.4.8"
   },
   "devDependencies": {
-    "ape-covering": "^3.0.3",
     "ape-formatting": "^1.0.1",
     "ape-releasing": "^4.0.1",
-    "ape-reporting": "^3.0.1",
     "ape-tasking": "^4.0.3",
     "ape-testing": "^4.0.1",
     "ape-tmpl": "^5.0.12",
     "ape-updating": "^4.0.4",
     "coz": "^6.0.5",
     "injectmock": "^2.0.0",
-    "sg-socket-client": "^1.2.7",
-    "sg-travis": "^1.1.25"
+    "sg-socket-client": "^1.2.7"
   },
   "engines": {
     "node": ">=6",
-    "npm": ">=3"
-  },
-  "publishConfig": {
-    "registry": "https://realglobe.artifactoryonline.com/realglobe/api/npm/npm-local"
+    "npm": ">=4"
   }
 }

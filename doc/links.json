@@ -1,3 +1,5 @@
 {
-  "socket.io": "https://github.com/socketio/socket.io#readme"
+  "socket.io": "https://github.com/socketio/socket.io#readme",
+  "SUGOS": "https://github.com/realglobe-Inc/sugos",
+  "Realglobe, Inc": "http://realglobe.jp"
 }
