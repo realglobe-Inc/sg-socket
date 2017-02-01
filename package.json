@@ -1,6 +1,6 @@
 {
   "name": "sg-socket",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "WebSocket server for SUGOS",
   "main": "lib",
   "scripts": {
@@ -37,7 +37,8 @@
     "ape-updating": "^4.0.4",
     "coz": "^6.0.5",
     "injectmock": "^2.0.0",
-    "sg-socket-client": "^1.2.7"
+    "sg-socket-client": "^1.2.7",
+    "sugos-travis": "^2.0.6"
   },
   "engines": {
     "node": ">=6",
