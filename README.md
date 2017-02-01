@@ -53,6 +53,7 @@ WebSocket server for SUGOS
 <!-- Section from "doc/guides/01.Installation.md.hbs" Start -->
 
 <a name="section-doc-guides-01-installation-md"></a>
+
 Installation
 -----
 
@@ -66,6 +67,7 @@ $ npm install sg-socket --save
 <!-- Section from "doc/guides/02.Usage.md.hbs" Start -->
 
 <a name="section-doc-guides-02-usage-md"></a>
+
 Usage
 ---------
 
@@ -100,7 +102,7 @@ server.on('connection', (socket) => {
 
 License
 -------
-This software is released under the [MIT License](https://github.com/realglobe-Inc/sg-socket/blob/master/LICENSE).
+This software is released under the [Apache-2.0 License](https://github.com/realglobe-Inc/sg-socket/blob/master/LICENSE).
 
 <!-- LICENSE End -->
 
@@ -112,7 +114,11 @@ Links
 ------
 
 + [socket.io][socket_io_url]
++ [SUGOS][sugos_url]
++ [Realglobe, Inc][realglobe,_inc_url]
 
 [socket_io_url]: https://github.com/socketio/socket.io#readme
+[sugos_url]: https://github.com/realglobe-Inc/sugos
+[realglobe,_inc_url]: http://realglobe.jp
 
 <!-- Links End -->
