@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- '6'
+- '8'
 before_install:
 - npm i npm-cli-login -g
 - echo "NPM_USER=${NPM_USER}"

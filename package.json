@@ -1,6 +1,6 @@
 {
   "name": "sg-socket",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "WebSocket server for SUGOS",
   "main": "lib",
   "scripts": {
@@ -23,8 +23,7 @@
   },
   "homepage": "https://github.com/realglobe-Inc/sg-socket#readme",
   "dependencies": {
-    "co": "^4.6.0",
-    "debug": "^2.6.6",
+    "debug": "^3.0.1",
     "sg-socket-constants": "^1.6.2",
     "socket.io": "^2.0.1"
   },
@@ -33,15 +32,15 @@
     "ape-releasing": "^4.0.1",
     "ape-tasking": "^4.0.3",
     "ape-testing": "^4.0.1",
-    "ape-tmpl": "^5.0.12",
+    "ape-tmpl": "^6.0.1",
     "ape-updating": "^4.1.1",
     "coz": "^6.0.5",
     "injectmock": "^2.0.0",
-    "sg-socket-client": "^1.5.0",
+    "sg-socket-client": "^2.0.1",
     "sugos-travis": "^2.0.7"
   },
   "engines": {
-    "node": ">=6",
+    "node": ">=7.6",
     "npm": ">=4"
   }
 }

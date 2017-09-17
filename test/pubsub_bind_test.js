@@ -9,66 +9,70 @@ const sgSocket = require('../lib/sg_socket.js')
 const sgSocketClient = require('sg-socket-client')
 const assert = require('assert')
 const co = require('co')
-const { AcknowledgeStatus } = require('sg-socket-constants')
-const { OK, NG } = AcknowledgeStatus
+const {AcknowledgeStatus} = require('sg-socket-constants')
+const {OK, NG} = AcknowledgeStatus
 
 describe('pubsub-bind', () => {
-  before(() => co(function * () {
+  before(async () => {
 
-  }))
+  })
 
-  after(() => co(function * () {
+  after(async () => {
 
-  }))
+  })
 
-  it('Create pubsub bind', () => co(function * () {
+  it('Create pubsub bind', async () => {
     assert.ok(pubsubBind({}))
-  }))
+  })
 
-  it('Pub / Sub', () => co(function * () {
+  it('Pub / Sub', async () => {
     let port = 9877
     let server = sgSocket(port)
 
     let client01 = sgSocketClient(`http://localhost:${port}`)
-    yield client01.waitToConnect()
+    await client01.waitToConnect()
 
     let client02 = sgSocketClient(`http://localhost:${port}`)
-    yield client02.waitToConnect()
+    await client02.waitToConnect()
 
     let topic01 = 'hogehoge'
 
-    yield client01.raiseAsPublisher(topic01)
+    await client01.raiseAsPublisher(topic01)
 
-    let result = yield client01.publish(topic01, {})
+    let result = await client01.publish(topic01, {})
     assert.equal(result.status, OK)
 
-    yield new Promise((resolve, reject) => {
+    await new Promise((resolve, reject) => {
       client02.subscribe(topic01, (payload) => {
-        assert.deepEqual(payload, { foo: 'bar' })
-        client02.unsubscribe(topic01).then(() => {
-          co(function * () {
-            let result = yield client01.publish(topic01, { foo: 'bar' })
-            let { count } = result.payload
+        assert.deepEqual(payload, {foo: 'bar'})
+        client02.unsubscribe(topic01).then(async () => {
+          try {
+            let result = await client01.publish(topic01, {foo: 'bar'})
+            let {count} = result.payload
             assert.equal(count, 0)
             resolve()
-          }).catch(reject)
+          } catch (e) {
+            reject(e)
+          }
         })
-      }).then(() => {
-        co(function * () {
-          let result = yield client01.publish(topic01, { foo: 'bar' })
-          let { count } = result.payload
+      }).then(async () => {
+        try {
+          let result = await client01.publish(topic01, {foo: 'bar'})
+          let {count} = result.payload
           assert.equal(count, 1)
-        }).catch(reject)
+        } catch (e) {
+          reject(e)
+        }
       })
     })
 
-    yield client01.shutAsPublisher(topic01)
+    await client01.shutAsPublisher(topic01)
 
     client01.close()
     client02.close()
 
-    yield server.close()
-  }))
+    await server.close()
+  })
 })
 
 /* global describe, before, after, it */

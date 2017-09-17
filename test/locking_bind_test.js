@@ -13,73 +13,73 @@ const { AcknowledgeStatus } = require('sg-socket-constants')
 const { OK, NG } = AcknowledgeStatus
 
 describe('locking-bind', () => {
-  before(() => co(function * () {
+  before(async () => {
 
-  }))
+  })
 
-  after(() => co(function * () {
+  after(async () => {
 
-  }))
+  })
 
-  it('Create locking bind', () => co(function * () {
+  it('Create locking bind', async () => {
     assert.ok(lockingBind({}))
-  }))
+  })
 
-  it('Lock / Unlock', () => co(function * () {
+  it('Lock / Unlock', async () => {
     let port = 9876
     let server = sgSocket(port)
 
     let client01 = sgSocketClient(`http://localhost:${port}`)
-    yield client01.waitToConnect()
+    await client01.waitToConnect()
 
     let client02 = sgSocketClient(`http://localhost:${port}`)
-    yield client02.waitToConnect()
+    await client02.waitToConnect()
 
     {
-      let result = yield client01.lock('hoge')
+      let result = await client01.lock('hoge')
       assert.equal(result.status, OK, 'succeeded to lock')
     }
 
     {
       let thrown
       try {
-        yield client02.lock('hoge')
+        await client02.lock('hoge')
       } catch (err) {
         thrown = err
       }
       assert.ok(thrown, 'Failed to lock')
     }
     {
-      let result = yield client02.lock('fuge')
+      let result = await client02.lock('fuge')
       assert.equal(result.status, OK, 'succeeded to lock')
     }
     {
-      let result = yield client01.unlock('hoge')
+      let result = await client01.unlock('hoge')
       assert.equal(result.status, OK, 'succeeded to unlock')
     }
     {
-      let result = yield client02.lock('hoge')
+      let result = await client02.lock('hoge')
       assert.equal(result.status, OK, 'succeeded to lock')
     }
     {
-      let result = yield client02.unlock('hoge')
+      let result = await client02.unlock('hoge')
       assert.equal(result.status, OK, 'succeeded to lock')
     }
 
-    yield new Promise((resolve) => {
+    await new Promise((resolve) => {
       client02.close()
       setTimeout(() => resolve(), 500)
     })
 
     {
-      let result = yield client01.lock('fuge')
+      let result = await client01.lock('fuge')
       assert.equal(result.status, OK, 'succeeded to lock')
     }
 
     client01.close()
 
-    yield server.close()
-  }))
+    await server.close()
+  })
 })
 
 /* global describe, before, after, it */

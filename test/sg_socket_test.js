@@ -12,19 +12,19 @@ const assert = require('assert')
 const co = require('co')
 
 describe('sg-socket', () => {
-  before(() => co(function * () {
+  before(async () => {
 
-  }))
+  })
 
-  after(() => co(function * () {
+  after(async () => {
 
-  }))
+  })
 
-  it('Start and stop server', () => co(function * () {
+  it('Start and stop server', async () => {
     let port = 9876
     let server = sgSocket(port)
-    yield server.close()
-  }))
+    await server.close()
+  })
 
 })
 
